@@ -1,0 +1,80 @@
+.icon {
+    height: 1.2cm !important;
+    width: 1.2cm !important;
+    border-radius: 50% !important;
+  }
+  body {
+    background-color: #ffecd1;
+  }
+  nav {
+    background-color: #15616d !important;
+    height: 8vh !important;
+    padding-top: 1vh !important;
+  }
+  a {
+    color: white !important;
+    
+  }
+  h2 {
+    color: #78290f;
+  }
+  .upvote {
+    background-color: green;
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+  
+  }
+  .dropdown a ,.user {
+    color: #ff7d00 !important;
+  }
+  .dropdown a:hover ,.user:hover {
+    cursor: pointer;
+  }
+  .card-img img {
+    border-radius: 50% !important;
+  }
+  hr {
+    background-color: #78290f !important;
+    height: 3px;
+  }
+  footer {
+    color: white !important;
+    margin-top: 3rem !important;
+  }
+  .actions {
+    margin-left: 0.3rem;
+  }
+  h3 {
+    color: #001524;
+  }
+  .comment {
+    background-color: #15616d;
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+  }
+  .downvote {
+    background-color: #8f7430;
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+  }
+  span a {
+    color: white;
+  }
+  .pitch {
+    width: 80%;
+  }
+  #sign {
+    color: #ff7d00 !important;
+  }
+  #create-acc {
+    background-color: green;
+    color: #ff7d00;
+  }
+  @media (max-width: 1000px) {
+    nav{
+      height: auto !important;
+    }
+  }
