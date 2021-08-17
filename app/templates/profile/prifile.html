@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+
+<!-- Styles block -->
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 1%">
+  <div class="row">
+    <div class="col-md-4 pict">
+
+
+      <div class="card testimonial-card">
+        <div class="card-img">
+          {% if user.profile_pic_path %}
+          <img src="{{url_for('static',filename=user.profile_pic_path)}}" style="height:300px;border-radius: 1%"
+            class="card-img" alt="woman avatar">
+          {%else%}
+          <p>No profile picture</p>
+          <div id="imgform">
+            <form action="{{url_for('main.update_pic',name=user.username)}}" method="post"
+              enctype="multipart/form-data">
+              <input type="file" name="photo" class="form-control" required>
+              <input type="submit" class="btn btn-sm btn-info" id="submit">
+            </form>
+          </div>
+
+          {% endif %}
+        </div>
+
+        <div class="card-body">
+          <h5> {{user.username}}</h5>
+          {% if user.bio %}
+          <p><i class="fas fa-quote-left"></i> {{user.bio}}</p>
+          {%else%}
+          <p> {{user.username| capitalize}} has no bio </p>
+          {% endif %}
+          {% if user == current_user %}
+          <div class="profpic">
+            <div id="updates">
+              <a href="{{url_for('main.updateprofile',name=user.username)}} " class="btn btn-primary">Edit Bio</a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5" id="user">
+      {% if current_user %}
+      <h3>You have {{user.pitches.count()}} Pitches</h3>
+      {% for i in posts%}
+      <div class="card pitches">
+        <h4>Title: {{i.title}}</h4>
+        <h6>{{i.post}}</h6>
+        <p>{{i.comment.count()}} Comments</p>
+      </div>
+      <hr>
+
+      {%endfor%}
+      {%else%}
+      <h3>You have ) posts</h3>
+      {%endif%}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

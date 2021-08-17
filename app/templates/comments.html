@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+<!-- Styles block -->
+{% block styles%}
+ {{ super() }}
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+<div class="container" id="allcomments">
+  <div class="row">
+
+    {% if all_comments %}
+    <div class="col-md-7">
+      <h3>All comments for the post</h3>
+      {% for comment in all_comments %}
+      <div class="card w-90 mb-3">
+        <div class="card-body">
+          <h4>{{comment.pitch.title}}</h4>
+          <p class="comment">{{ comment.comment }}</p>
+          <p class="user">By: {{comment.user.username}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-md-5  commentform">
+
+      {{wtf.quick_form(form)}}
+    </div>
+  </div>
+  {%else%}
+  <div class="card w-90 mb-3">
+    <div>
+      <p>This pitch has no comments. Be the first to comment</p>
+    </div>
+  </div>
+  <div class="col-md-5">
+    {{wtf.quick_form(form)}}
+  </div>
+  {%endif%}
+</div>
+
+{% endblock%}

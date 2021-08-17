@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">PITCHES</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('main.index')}}">Featured</a>
+          </li> 
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a id="create-acc" class="nav-link" href="{{url_for('main.new_pitch')}}">Create New Pitch</a>
+            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style='margin-right:30px' data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="fas fa-user"></i>&nbsp;<strong>{{current_user.username}}</strong> </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+              <a class="dropdown-item" href="{{url_for('main.profile',name=current_user.username)}}"><i
+                  class="far fa-user"></i>&nbsp; My account</a><br>
+              <a class="dropdown-item" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log
+                out</a>
+            </div>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('auth.login')}}" style='margin-right:30px'><i
+                class="fas fa-sign-in-alt"></i>&nbsp; <strong>Log In</strong></a>
+          </li>
+          <li class="nav-item">
+            <a style='margin-right:30px' class="nav-link" href="{{url_for('auth.signup')}}"><i
+                class="fas fa-user-plus"></i></i>&nbsp; <strong>Sign Up</strong></a>
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+    </div>
+  </nav>
